@@ -1,21 +1,15 @@
-/*
- * @Author: WangHeYao
- * @Date: 2022-08-25 17:02:59
- * @Last Modified by:   WangHeYao
- * @Last Modified time: 2022-08-25 17:02:59
- */
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
 
 const routes: Array<RouteRecordRaw> = [
   {
     path: "/",
     name: "home",
-    component: () => import("@/views/home/homeView.vue"),
+    component: () => import("@/views/HomeView/HomeView.vue"),
   },
   {
     path: "/user",
     name: "user",
-    component: () => import("@/views/user/userView.vue"),
+    component: () => import("@/views/UserView/UserView.vue"),
   },
 ];
 

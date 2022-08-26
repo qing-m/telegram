@@ -1,4 +1,4 @@
-# vue-cli3-ts-pinia
+# telegram
 
 ## Project setup
 ```
