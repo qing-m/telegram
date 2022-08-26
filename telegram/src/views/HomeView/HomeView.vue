@@ -11,6 +11,7 @@ const { count, doubleCount } = storeToRefs(useHomeViewStore());
     {{ count }}
     {{ doubleCount }}
     <button @click="homeViewStroe.increment()">+</button>
+    <router-link :to="{ name: 'userIndex' }">redirect</router-link>
   </div>
 </template>
 
