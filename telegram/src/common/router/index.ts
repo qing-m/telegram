@@ -1,3 +1,10 @@
+/*
+ * @Author: WangHeYao
+ * @Date: 2022-08-26 15:23:38
+ * @Last Modified by:   WangHeYao
+ * @Last Modified time: 2022-08-26 15:23:38
+ */
+
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
 
 const routes: Array<RouteRecordRaw> = [

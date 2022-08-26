@@ -1,7 +1,17 @@
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+import { storeToRefs } from "pinia";
+import { useHomeViewStore } from "@/common/store/modules/homeView";
+const homeViewStroe = useHomeViewStore();
+const { count, doubleCount } = storeToRefs(useHomeViewStore());
+</script>
 
 <template>
-  <div class="home_view"></div>
+  <div class="home_view">
+    {{ homeViewStroe.count }}
+    {{ count }}
+    {{ doubleCount }}
+    <button @click="homeViewStroe.increment()">+</button>
+  </div>
 </template>
 
 <style lang="scss"></style>
