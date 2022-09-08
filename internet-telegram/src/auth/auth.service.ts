@@ -17,6 +17,9 @@ export class AuthService {
     registerAuthDto: RegisterAuthDto,
   ): Promise<RegisterAuthInterface> {
     console.log(registerAuthDto);
-    return this.authEntity.save(registerAuthDto);
+    // return this.authEntity.save(registerAuthDto);
+    // console.log(Client);
+    // console.log(process.argv.slice(2));
+    return registerAuthDto;
   }
 }
