@@ -1,4 +1,5 @@
 export interface CreateUserInterface {
-  id: number;
   name: string;
+  phone: string;
+  code: number;
 }

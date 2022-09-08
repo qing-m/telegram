@@ -1,25 +1,22 @@
 import { Injectable } from '@nestjs/common';
-import { UpdateAuthDto } from './dto/update-auth.dto';
+
+import { RegisterAuthDto } from './dto/register-auth-dto';
+import { RegisterAuthInterface } from './interface/register-auth-interface';
+
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { AuthEntity } from './entities/auth.entity';
 
 @Injectable()
 export class AuthService {
-  create() {
-    return 'This action adds a new auth';
-  }
-
-  findAll() {
-    return `This action returns all auth`;
-  }
-
-  findOne(id: number) {
-    return `This action returns a #${id} auth`;
-  }
-
-  update(id: number, updateAuthDto: UpdateAuthDto) {
-    return `This action updates a #${id} auth`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} auth`;
+  constructor(
+    @InjectRepository(AuthEntity)
+    private authEntity: Repository<AuthEntity>,
+  ) {}
+  async register(
+    registerAuthDto: RegisterAuthDto,
+  ): Promise<RegisterAuthInterface> {
+    console.log(registerAuthDto);
+    return this.authEntity.save(registerAuthDto);
   }
 }

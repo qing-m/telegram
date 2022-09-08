@@ -1,12 +1,14 @@
-import { IsNotEmpty } from 'class-validator';
+import { IsNotEmpty, IsNumber } from 'class-validator';
 
 export class RegisterAuthDto {
-  @IsNotEmpty()
-  readonly phone: string;
+  @IsNotEmpty({ message: 'name不能为空' })
+  readonly name: string;
 
-  @IsNotEmpty()
-  readonly code: string;
+  @IsNotEmpty({ message: 'phone不能为空' })
+  @IsNumber()
+  readonly phone: number;
 
-  @IsNotEmpty()
-  readonly password: string;
+  @IsNotEmpty({ message: 'code不能为空' })
+  @IsNumber()
+  readonly code: number;
 }
