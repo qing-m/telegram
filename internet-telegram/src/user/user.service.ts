@@ -14,8 +14,6 @@ export class UserService {
   ) {}
 
   async register(createUserDto: CreateUserDto): Promise<CreateUserInterface> {
-    console.log(CreateUserDto);
-    // return this.userEntity.save(createUserDto);
-    return createUserDto;
+    return this.userEntity.save(createUserDto);
   }
 }

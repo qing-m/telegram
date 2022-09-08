@@ -1,12 +1,12 @@
-import { IsNotEmpty } from 'class-validator';
+import { IsNotEmpty, Length, Validate } from 'class-validator';
+import { IsEngAndNumber } from '../../utils/validate';
 
 export class CreateUserDto {
   @IsNotEmpty()
-  readonly name: string;
+  @Length(1, 10)
+  @Validate(IsEngAndNumber, { message: '英文和数字' })
+  readonly username: string;
 
   @IsNotEmpty()
-  readonly phone: string;
-
-  @IsNotEmpty()
-  readonly code: number;
+  readonly password: string;
 }

@@ -1,45 +1,55 @@
-import { Entity, Column, PrimaryGeneratedColumn, BeforeInsert } from 'typeorm';
+import {
+  Entity,
+  Column,
+  CreateDateColumn,
+  UpdateDateColumn,
+  PrimaryGeneratedColumn,
+  BeforeInsert,
+} from 'typeorm';
 import { bcrypt } from 'bcryptjs';
 
 @Entity('user')
 export class UserEntity {
-  @PrimaryGeneratedColumn('uuid')
+  @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ length: 100 })
+  @Column({ type: 'varchar', unique: true })
   username: string;
 
-  @Column({ length: 100 })
-  nickname: string;
+  @Column({
+    default: null,
+  })
+  nickname!: string;
 
-  @Column()
-  email: string;
-
-  @Column()
+  @Column({
+    default: null,
+  })
   phone: number;
 
-  @Column()
+  @Column({
+    default: null,
+  })
+  email: string;
+
+  @Column({
+    default: null,
+  })
   avatar: string;
 
   @Column()
   password: string;
 
-  @Column('simple-enum', { enum: ['root', 'author', 'visitor'] })
+  @Column('simple-enum', {
+    enum: ['root', 'author', 'visitor'],
+    default: 'root',
+  })
   role: string;
 
-  @Column({
-    name: 'create_time',
-    type: 'timestamp',
-    default: () => 'CURRENT_TIMESTAMP',
-  })
-  createTime: Date;
+  @CreateDateColumn({ comment: '创建时间' })
+  createTime: string;
 
-  @Column({
-    name: 'update_time',
-    type: 'timestamp',
-    default: () => 'CURRENT_TIMESTAMP',
-  })
-  updateTime: Date;
+  @UpdateDateColumn({ comment: '更新时间' })
+  updateTime: string;
 
   @BeforeInsert()
   async encryptPwd() {

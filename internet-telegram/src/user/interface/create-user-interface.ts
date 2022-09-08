@@ -1,5 +1,4 @@
 export interface CreateUserInterface {
-  name: string;
-  phone: string;
-  code: number;
+  username: string;
+  password: string;
 }
