@@ -1,5 +1,4 @@
 import { Entity, Column, PrimaryGeneratedColumn, BeforeInsert } from 'typeorm';
-import { bcrypt } from 'bcryptjs';
 
 @Entity('auth')
 export class AuthEntity {
@@ -36,9 +35,4 @@ export class AuthEntity {
     default: () => 'CURRENT_TIMESTAMP',
   })
   updateTime: Date;
-
-  @BeforeInsert()
-  async encryptPwd() {
-    this.password = await bcrypt.hashSync(this.password, 10);
-  }
 }

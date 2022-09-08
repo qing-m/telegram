@@ -14,6 +14,15 @@ export class UserService {
   ) {}
 
   async register(createUserDto: CreateUserDto): Promise<CreateUserInterface> {
-    return this.userEntity.save(createUserDto);
+    const { username } = createUserDto;
+    const existUser = await this.userEntity.findOne({
+      where: { username },
+    });
+    console.log(existUser);
+    if (existUser) {
+      throw new HttpException('用户已存在', HttpStatus.BAD_REQUEST);
+    }
+    const newUser = await this.userEntity.create(createUserDto);
+    return this.userEntity.save(newUser);
   }
 }
