@@ -56,9 +56,5 @@ export class UserEntity {
   @BeforeInsert()
   async encryptPwd() {
     this.password = await bcrypt.hashSync(this.password, 10);
-    // const res = await bcrypt.compareSync(
-    //   '1200030',
-    //   '$2b$10$fg38M6.fV8X6YqS/aSNaPuHuCg7NVO97qfmFiGWqj9gX2jsna/4Y2',
-    // );
   }
 }
