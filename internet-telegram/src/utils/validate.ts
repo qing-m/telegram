@@ -7,7 +7,7 @@ import {
 @ValidatorConstraint({ name: 'IsEngAndNumber', async: false })
 export class IsEngAndNumber implements ValidatorConstraintInterface {
   validate(text: string, args: ValidationArguments) {
-    const IsEngAndNumberReg = new RegExp('^[a-zA-Z0-9]+$');
-    return IsEngAndNumberReg.test(text);
+    const reg = new RegExp('^[a-zA-Z0-9]+$');
+    return reg.test(text);
   }
 }

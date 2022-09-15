@@ -15,12 +15,8 @@ export class UsersController {
   constructor(private readonly userService: UserService) {}
 
   @Post('register')
-  register(@Body() createUserDto: CreateUserDto) {
-    return this.userService.register(createUserDto);
-  }
-
-  @Post('login')
-  login(@Body() createUserDto: CreateUserDto) {
-    return this.userService.login(createUserDto);
+  async register(@Body() createUserDto: CreateUserDto) {
+    const data = await this.userService.register(createUserDto);
+    return { message: '注册成功', data };
   }
 }

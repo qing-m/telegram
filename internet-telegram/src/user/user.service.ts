@@ -22,32 +22,17 @@ export class UserService {
     private userEntity: Repository<UserEntity>,
   ) {}
 
-  async register(createUserDto: CreateUserDto): Promise<CreateUserInterface> {
-    const { username } = createUserDto;
-    const existUser = await this.userEntity.findOne({
-      where: { username },
+  async register(createUserDto: CreateUserDto) {
+    const userExist = await this.userEntity.findOne({
+      where: { username: createUserDto.username },
     });
-    if (existUser) {
+    if (userExist)
       throw new HttpException('用户已存在', HttpStatus.BAD_REQUEST);
-    }
-    const newUser = await this.userEntity.create(createUserDto);
-    return this.userEntity.save(newUser);
-  }
 
-  async login(createUserDto: CreateUserDto): Promise<CreateUserInterface> {
-    const { username, password } = createUserDto;
-    const user = await this.userEntity
-      .createQueryBuilder('user')
-      .addSelect('user.password')
-      .where('user.username=:username', { username })
-      .getOne();
-    if (!user) {
-      throw new HttpException('当前用户不存在', HttpStatus.BAD_REQUEST);
-    }
-    const compareSync = await bcrypt.compareSync(password, user.password);
-    if (!compareSync) {
-      throw new BadRequestException('密码错误！');
-    }
+    const newUser = await this.userEntity.create(createUserDto);
+    const user = await this.userEntity.save(newUser);
+
+    delete newUser.password;
     return user;
   }
 }
