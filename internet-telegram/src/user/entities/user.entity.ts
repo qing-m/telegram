@@ -47,6 +47,9 @@ export class UserEntity {
   })
   role: string;
 
+  @Column({ type: 'bool', default: true })
+  status: boolean;
+
   @CreateDateColumn({ comment: '创建时间' })
   createTime: string;
 
